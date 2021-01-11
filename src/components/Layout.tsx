@@ -1,10 +1,8 @@
+import React, {FC} from 'react';
 import Head from "next/head";
 import Navigation from "./Navigation";
 
-type Props = {
-  children: React.ReactNode;
-};
-export default function Layout({ children }: Props) {
+const Layout:FC = ({ children }) => {
   return (
     <div className="root">
       <Head>
@@ -44,3 +42,4 @@ export default function Layout({ children }: Props) {
     </div>
   );
 }
+export default Layout

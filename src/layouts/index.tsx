@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React from "react";
 import styles from "../../public/styles/content.module.css";
 import Author from "../components/Author";
@@ -22,14 +21,14 @@ type Props = {
   tags: string[];
   author: string;
 };
-export default function Index({
+const  Index= ({
   title,
   date,
   slug,
   author,
   tags,
   description,
-}: Props) {
+}: Props) => {
   const keywords = tags.map((it) => getTag(it).name);
   const authorName = getAuthor(author).name;
   return ({ children: content }) => {
@@ -236,3 +235,4 @@ export default function Index({
     );
   };
 }
+export default Index
