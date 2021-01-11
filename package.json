@@ -7,7 +7,14 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export -o ./dist",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "yarn tsc --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn jest && yarn typecheck",
+      "pre-push": "yarn jest & yarn typecheck"
+    }
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
@@ -31,6 +38,7 @@
     "@types/jest": "^26.0.9",
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
+    "husky": "^4.3.7",
     "jest": "^26.3.0",
     "ts-jest": "^26.2.0",
     "typescript": "^3.8.3",
