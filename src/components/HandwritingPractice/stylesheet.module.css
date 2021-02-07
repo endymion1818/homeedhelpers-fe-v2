@@ -57,10 +57,10 @@
     margin: 0;
     width: 100%;
 }
-#printarea p.large img {
+#printarea #editable.large img {
     margin-top: 35px;
 }
-#printarea p.small img {
+#printarea #editable.small img {
     margin-top: 8px;
 }
 #printarea img {
@@ -105,12 +105,12 @@
         position: relative;
         width: 100%;
     }
-    #printarea__header p:first-child {
+    #printarea__header #editable:first-child {
         position: absolute;
         left: 0;
         top: 0;
     }
-    #printarea__header p:last-child {
+    #printarea__header #editable:last-child {
         position: absolute;
         left: 400px;
         top: 0;

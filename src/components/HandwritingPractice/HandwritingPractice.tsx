@@ -1,34 +1,69 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './stylesheet.module.css'
+
+const Select = ({ values, callback, selected }) => {
+    return (
+      <select
+        defaultValue={selected}
+        onChange={({ target: { value } }) => callback(value)}
+      >
+        {values.map(value => (
+          <option key={value.value} value={value.value}>
+            {value.text}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
 const HandwritingPractice = () => {
 
-    const [message, useMessage] = React.useState('Edit me!')
-    const font = 'KG Primary Dots'
-    const scale = 'large'
-    const textAlign = 'left'
-    const showLines = true
-    let lines = []
-    
-    const linesList = function () {
-        lines = message
-            .split("\n")
-            .map(l => l.trim())
-    }
-    const lineStyle = function () {
-        return {
-            fontSize: scale === 'large' ?  `152px` : `40px`,
-            fontFamily: font,
-            lineHeight: scale === 'large' ?  `1.3` : `1.2`,
+    const [font, setFont] = React.useState('KG Primary Dots')
+    const [scale, setScale] = React.useState('large')
+    const [textAlign, setTextAlign] = React.useState('left')
+    const [showLines, setShowLines] = React.useState(true)
+
+    const lineStyles = [
+        {
+            name: 'large',
+            value: '152px'
+        },
+        {
+            name: 'small',
+            value: '40px'
         }
-    }
-    const printStyle = function () {
-        return {
-            textAlign: textAlign,
-            paddingTop: scale === 'large' ? `40px` : `72px`
+    ]
+    const fontStyles = [
+        {
+            name: 'primary',
+            value: 'KG Primary Dots'
+        },
+        {
+            name: 'cursive',
+            value: 'Learning Curve Dashed'
         }
-    }
-    const printHandler:React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement> = function() {
+    ]
+    const alignmentStyles = [
+        {
+            name: 'left',
+            value: 'left'
+        },
+        {
+            name: 'center',
+            value: 'center'
+        },
+        {
+            name: 'right',
+            value: 'right'
+        }
+    ]
+    // const printStyle = function () {
+    //     return {
+    //         textAlign: textAlign,
+    //         paddingTop: scale === 'large' ? `40px` : `72px`
+    //     }
+    // }
+    const printHandler:React.MouseEventHandler<HTMLElement> = function() {
         if (typeof window !== 'undefined') {
             window.print
         }
@@ -45,20 +80,14 @@ const HandwritingPractice = () => {
                 </li>
             </ol>
             <p id={styles.sorrynotresponsive} data-nosnippet>Sorry! You'll need to use a device with a larger screen for this to work.</p>
-            <div id={styles.edit}>
-                <textarea value={message} onChange={e => useMessage(e.currentTarget.value)} />
-            </div>
             <div id={styles.font}>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="dot">Font: </label>
-                    <select>
-                    <option id={styles.dot} value="KG Primary Dots" selected>Primary</option>
-                    <option value="Learning Curve Dashed" >Dots lined Cursive</option>
-                </select>
+                    <Select values={fontStyles} callback={setFont} selected={fontStyles[0]} />
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="lines">Show lines: </label>
-                    <input type="checkbox" checked={showLines} />
+                    <input id="lines" type="checkbox" checked={showLines} />
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="align">Align: </label>
@@ -70,7 +99,7 @@ const HandwritingPractice = () => {
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="scale">Font Size</label>
-                    <select id={styles.scale} value={scale} onChange={printStyle}>
+                    <select id={styles.scale} value={scale}>
                         <option id={styles.large} value="large" selected>Large</option>
                         <option id={styles.small} value="small">Small</option>
                     </select>
@@ -84,7 +113,7 @@ const HandwritingPractice = () => {
                     <p>Student name: ______________________</p>
                     <p>Date: ___________</p>
                 </section>
-                {}
+                <p className={styles.editable} contentEditable="true">Edit me</p>
             </div>
             <hr/>
         <h2>Frequently asked questions</h2>
