@@ -18,6 +18,9 @@
     align-items: center;
     max-width: 100vw;
 }
+.fieldset {
+    border: 1px solid transparent;
+}
 #edit {
     margin-bottom: 20px;
 }
@@ -66,14 +69,15 @@
     left: 0;
     width: 100%;
 }
-#instructions {
+.instructions {
     padding-inline-start: 20px;
+}
+.instructions > li {
+    line-height: 1.5;
+    margin-bottom: 5px;
 }
 #sorrynotresponsive {
     display: none;
-}
-#footer {
-    text-align: center;
 }
 @media (max-width: 550px) {
     #sorrynotresponsive {
