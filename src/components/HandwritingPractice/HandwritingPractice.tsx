@@ -1,6 +1,41 @@
 import React, { useEffect } from 'react'
 import styles from './stylesheet.module.css'
 
+const lineStyles = [
+    {
+        name: 'large',
+        value: '152px'
+    },
+    {
+        name: 'small',
+        value: '40px'
+    }
+]
+const fontStyles = [
+    {
+        name: 'primary',
+        value: 'KG Primary Dots'
+    },
+    {
+        name: 'cursive',
+        value: 'Learning Curve Dashed'
+    }
+]
+const alignmentStyles = [
+    {
+        name: 'left',
+        value: 'left'
+    },
+    {
+        name: 'center',
+        value: 'center'
+    },
+    {
+        name: 'right',
+        value: 'right'
+    }
+]
+
 const Select = ({ values, callback, selected }) => {
     return (
       <select
@@ -9,7 +44,7 @@ const Select = ({ values, callback, selected }) => {
       >
         {values.map(value => (
           <option key={value.value} value={value.value}>
-            {value.text}
+            {value.name}
           </option>
         ))}
       </select>
@@ -18,45 +53,11 @@ const Select = ({ values, callback, selected }) => {
 
 const HandwritingPractice = () => {
 
-    const [font, setFont] = React.useState('KG Primary Dots')
+    const [font, setFont] = React.useState(fontStyles[0].name)
     const [scale, setScale] = React.useState('large')
     const [textAlign, setTextAlign] = React.useState('left')
     const [showLines, setShowLines] = React.useState(true)
 
-    const lineStyles = [
-        {
-            name: 'large',
-            value: '152px'
-        },
-        {
-            name: 'small',
-            value: '40px'
-        }
-    ]
-    const fontStyles = [
-        {
-            name: 'primary',
-            value: 'KG Primary Dots'
-        },
-        {
-            name: 'cursive',
-            value: 'Learning Curve Dashed'
-        }
-    ]
-    const alignmentStyles = [
-        {
-            name: 'left',
-            value: 'left'
-        },
-        {
-            name: 'center',
-            value: 'center'
-        },
-        {
-            name: 'right',
-            value: 'right'
-        }
-    ]
     // const printStyle = function () {
     //     return {
     //         textAlign: textAlign,
@@ -113,7 +114,7 @@ const HandwritingPractice = () => {
                     <p>Student name: ______________________</p>
                     <p>Date: ___________</p>
                 </section>
-                <p className={styles.editable} contentEditable="true">Edit me</p>
+                <p style={{ fontFamily: font }} contentEditable="true">Edit me</p>
             </div>
             <hr/>
         <h2>Frequently asked questions</h2>
