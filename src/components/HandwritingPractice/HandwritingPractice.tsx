@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import styles from './stylesheet.module.css'
+import classNames from 'classnames/bind'
 
-const lineStyles = [
+const lineScales = [
     {
         name: 'large',
         value: '152px'
@@ -36,6 +37,8 @@ const alignmentStyles = [
     }
 ]
 
+let cx = classNames.bind(styles)
+
 const Select = ({ values, callback, selected }) => {
     return (
       <select
@@ -52,23 +55,25 @@ const Select = ({ values, callback, selected }) => {
   }
 
 const HandwritingPractice = () => {
-
+    // TODO: Initial values not being set correctly
     const [font, setFont] = React.useState(fontStyles[0].name)
-    const [scale, setScale] = React.useState('large')
-    const [textAlign, setTextAlign] = React.useState('left')
+    const [scale, setScale] = React.useState(lineScales[0].name)
+    const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
     const [showLines, setShowLines] = React.useState(true)
 
-    // const printStyle = function () {
-    //     return {
-    //         textAlign: textAlign,
-    //         paddingTop: scale === 'large' ? `40px` : `72px`
-    //     }
-    // }
+    const ClassNames = ({
+        font,
+        scale,
+        textAlignment,
+        showLines: showLines ? 'plain' : 'lined'
+    })
+
     const printHandler:React.MouseEventHandler<HTMLElement> = function() {
         if (typeof window !== 'undefined') {
             window.print
         }
     }
+    console.log(ClassNames)
     return (
         <div className="container">
             <h1>Handwriting practice paper</h1>
@@ -88,22 +93,20 @@ const HandwritingPractice = () => {
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="lines">Show lines: </label>
-                    <input id="lines" type="checkbox" checked={showLines} />
+                    <input 
+                        id="lines" 
+                        type="checkbox" 
+                        defaultChecked={true} 
+                        onChange={() => setShowLines(!showLines)} 
+                    />
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="align">Align: </label>
-                    <select id={styles.align}>
-                        <option value="left" selected>Left</option>
-                        <option value="center">Center</option>
-                        <option value="right">Right</option>
-                    </select>
+                    <Select values={alignmentStyles} callback={setTextAlign} selected={alignmentStyles[0]} />
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <label htmlFor="scale">Font Size</label>
-                    <select id={styles.scale} value={scale}>
-                        <option id={styles.large} value="large" selected>Large</option>
-                        <option id={styles.small} value="small">Small</option>
-                    </select>
+                    <Select values={lineScales} callback={setScale} selected={lineScales[0]} />
                 </fieldset>
                 <fieldset className={styles.fieldset}>
                     <button onClick={printHandler}>Print</button>
@@ -114,7 +117,7 @@ const HandwritingPractice = () => {
                     <p>Student name: ______________________</p>
                     <p>Date: ___________</p>
                 </section>
-                <p style={{ fontFamily: font }} contentEditable="true">Edit me</p>
+                <p className="test" />
             </div>
             <hr/>
         <h2>Frequently asked questions</h2>
@@ -136,7 +139,7 @@ const HandwritingPractice = () => {
                 <i>You can email homeedhelpers@gmail.com to send feature suggestions and bug reports. We will read your email but cannot guarantee a response.</i>
             </li>
         </ol>
-        </div>
+      </div>
     )
 }
 
