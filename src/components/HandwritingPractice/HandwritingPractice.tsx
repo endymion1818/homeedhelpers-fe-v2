@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import styles from './stylesheet.module.css'
+import styles from './stylesheet.module.scss'
 import clsx from 'clsx'
 
 const lineScales = [
@@ -15,11 +15,11 @@ const lineScales = [
 const fontStyles = [
     {
         name: 'primary',
-        value: 'KG Primary Dots'
+        value: 'primary'
     },
     {
         name: 'cursive',
-        value: 'Learning Curve Dashed'
+        value: 'cursive'
     }
 ]
 const alignmentStyles = [
@@ -60,6 +60,7 @@ const HandwritingPractice = () => {
     const [showLines, setShowLines] = React.useState(true)
 
     const classes = clsx(
+        styles.editable,
         font,
         scale,
         textAlignment,

@@ -2,6 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/handwriting-practice-paper": "pages/handwriting-practice-paper.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/handwriting-practice-paper": "pages/handwriting-practice-paper.js"
 }

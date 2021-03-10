@@ -52,16 +52,17 @@
 #printarea__header p {
     font-size: 18px;
 }
-#printarea p {
+.editable {
     position: relative;
     margin: 0;
     width: 100%;
-}
-#printarea #editable.large img {
-    margin-top: 35px;
-}
-#printarea #editable.small img {
-    margin-top: 8px;
+
+    &.primary {
+        font-family: 'KG Primary Dots';
+    }
+    &.cursive {
+        font-family: 'Learning Curve Dashed';
+    }
 }
 #printarea img {
     position: absolute;
