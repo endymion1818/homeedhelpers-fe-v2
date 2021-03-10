@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styles from './stylesheet.module.css'
-import classNames from 'classnames/bind'
+import clsx from 'clsx'
 
 const lineScales = [
     {
@@ -37,8 +37,6 @@ const alignmentStyles = [
     }
 ]
 
-let cx = classNames.bind(styles)
-
 const Select = ({ values, callback, selected }) => {
     return (
       <select
@@ -61,19 +59,19 @@ const HandwritingPractice = () => {
     const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
     const [showLines, setShowLines] = React.useState(true)
 
-    const ClassNames = ({
+    const classes = clsx(
         font,
         scale,
         textAlignment,
-        showLines: showLines ? 'plain' : 'lined'
-    })
+        showLines ? 'plain' : 'lined'
+    )
 
     const printHandler:React.MouseEventHandler<HTMLElement> = function() {
+        // TODO: fix this
         if (typeof window !== 'undefined') {
             window.print
         }
     }
-    console.log(ClassNames)
     return (
         <div className="container">
             <h1>Handwriting practice paper</h1>
@@ -117,7 +115,7 @@ const HandwritingPractice = () => {
                     <p>Student name: ______________________</p>
                     <p>Date: ___________</p>
                 </section>
-                <p className="test" />
+                <p className={classes}>Edit me!</p>
             </div>
             <hr/>
         <h2>Frequently asked questions</h2>
