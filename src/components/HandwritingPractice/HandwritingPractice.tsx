@@ -28,8 +28,8 @@ const alignmentStyles = [
         value: 'left'
     },
     {
-        name: 'centre',
-        value: 'centre'
+        name: 'center',
+        value: 'center'
     },
     {
         name: 'right',
@@ -53,7 +53,6 @@ const Select = ({ values, callback, selected }) => {
   }
 
 const HandwritingPractice = () => {
-    // TODO: state not updating sometimes
     const [font, setFont] = React.useState(fontStyles[0].name)
     const [scale, setScale] = React.useState(lineScales[0].name)
     const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
