@@ -15,7 +15,7 @@ const Layout:FC = ({ children }) => {
       <nav>
         <Navigation />
       </nav>
-      <main>
+      <main className="container">
         {children}
       </main>
       <style jsx>
@@ -33,6 +33,13 @@ const Layout:FC = ({ children }) => {
           footer {
             text-align: center;
             margin-bottom: 20px;
+          }
+          .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1 1 auto;
+            padding: 0 1.5rem;
           }
           @media (min-width: 769px) {
             .root {

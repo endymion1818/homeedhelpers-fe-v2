@@ -8,7 +8,8 @@
     "start": "next start",
     "export": "next build && next export -o ./dist",
     "test": "jest",
-    "typecheck": "yarn tsc --noEmit"
+    "typecheck": "yarn tsc --noEmit",
+    "clean": "rm -rf .next"
   },
   "husky": {
     "hooks": {
