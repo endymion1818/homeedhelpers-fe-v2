@@ -53,6 +53,7 @@ const Select = ({ values, callback, selected }) => {
   }
 
 const HandwritingPractice = () => {
+    // TODO: state not updating sometimes
     const [font, setFont] = React.useState(fontStyles[0].name)
     const [scale, setScale] = React.useState(lineScales[0].name)
     const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
@@ -63,15 +64,9 @@ const HandwritingPractice = () => {
         styles[font],
         styles[scale],
         styles[textAlignment],
-        showLines ? 'plain' : 'lined'
+        showLines ? styles['lined'] : styles['plain']
     )
 
-    const printHandler:React.MouseEventHandler<HTMLElement> = function() {
-        // TODO: fix this
-        if (typeof window !== 'undefined') {
-            window.print
-        }
-    }
     return (
         <div className="container">
             <h1>Handwriting practice paper</h1>
@@ -107,7 +102,7 @@ const HandwritingPractice = () => {
                     <Select values={lineScales} callback={setScale} selected={lineScales[0]} />
                 </fieldset>
                 <fieldset className={styles.fieldset}>
-                    <button onClick={printHandler}>Print</button>
+                    <button onClick={() => window.print}>Print</button>
                 </fieldset>
             </div>
             <div id={styles.printarea}>
@@ -115,7 +110,7 @@ const HandwritingPractice = () => {
                     <p>Student name: ______________________</p>
                     <p>Date: ___________</p>
                 </section>
-                <p className={classes}>Edit me!</p>
+                <p className={classes} contentEditable="true">Edit me!</p>
             </div>
             <hr/>
         <h2>Frequently asked questions</h2>
