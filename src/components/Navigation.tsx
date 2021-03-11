@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Burger from "./Burger";
 import { useState } from "react";
 
+import Logo from './logo.svg'
+
 export default function Navigation() {
   const router = useRouter();
   const [active, setActive] = useState(false);
@@ -12,8 +14,8 @@ export default function Navigation() {
       <div className={"container " + (active ? "active" : "")}>
         <ul>
           <li>
-            <Link href="/">
-              <a className={router.pathname === "/" ? "active" : null}>home</a>
+            <Link href="/" title="go home - home ed helpers">
+              <a className={router.pathname === "/" ? "active" : null}><Logo /></a>
             </Link>
           </li>
           <li>
