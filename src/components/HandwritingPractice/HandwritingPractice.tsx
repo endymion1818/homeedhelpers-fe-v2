@@ -53,7 +53,6 @@ const Select = ({ values, callback, selected }) => {
   }
 
 const HandwritingPractice = () => {
-    // TODO: Initial values not being set correctly
     const [font, setFont] = React.useState(fontStyles[0].name)
     const [scale, setScale] = React.useState(lineScales[0].name)
     const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
@@ -61,9 +60,9 @@ const HandwritingPractice = () => {
 
     const classes = clsx(
         styles.editable,
-        font,
-        scale,
-        textAlignment,
+        styles[font],
+        styles[scale],
+        styles[textAlignment],
         showLines ? 'plain' : 'lined'
     )
 
