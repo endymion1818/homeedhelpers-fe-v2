@@ -65,8 +65,7 @@
     }
     &.large {
         font-size: 152px;
-        line-height: 1.2;
-        padding-top: 72px;
+        line-height: 1;
 
         &.lined {
             background-image: url(./handwriting-singleline-large.png);
@@ -74,8 +73,7 @@
     }
     &.small {
         font-size: 40px;
-        line-height: 1.3;
-        padding-top: 40px;
+        line-height: 0.95;
 
         &.lined {
             background-image: url(./handwriting-singleline-small.png);
@@ -87,7 +85,7 @@
     &.right {
         text-align: right;
     }
-    &.centre {
+    &.center {
         text-align: center;
     }
 
@@ -97,21 +95,6 @@
     top: 0;
     left: 0;
     width: 100%;
-}
-.instructions {
-    padding-inline-start: 20px;
-}
-.instructions > li {
-    line-height: 1.5;
-    margin-bottom: 5px;
-}
-#sorrynotresponsive {
-    display: none;
-}
-@media (max-width: 550px) {
-    #sorrynotresponsive {
-        display: block;
-    }
 }
 @media print {
     .container * {
