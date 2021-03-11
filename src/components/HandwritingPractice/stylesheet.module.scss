@@ -33,10 +33,19 @@
 #font {
     width: 75vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     margin-bottom: 20px;
+
+    label {
+        display: inline-block;
+        margin: 0.2rem;
+    }
+
+    @media (min-width: 769px) {
+        flex-direction: row;
+    }
 }
 
 #printarea {
@@ -67,16 +76,16 @@
         font-size: 152px;
         line-height: 1;
 
-        &.lined {
-            background-image: url(./handwriting-singleline-large.png);
+        img {
+            height: 152px;
         }
     }
     &.small {
         font-size: 40px;
         line-height: 0.95;
 
-        &.lined {
-            background-image: url(./handwriting-singleline-small.png);
+        img {
+            height: 40px;
         }
     }
     &.left {
@@ -90,26 +99,24 @@
     }
 
 }
-#printarea img {
+.editableAreaImage {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
 }
 @media print {
-    .container * {
-        visibility: hidden;
-        margin: 0;
-        padding: 0;
-        background-color: initial;
-    }
     #printarea,
     #printarea * {
         visibility: visible;
         position: absolute;
         top: 0;
         left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
         float: left;
+        background: white;
     }
     #printarea__header {
         display: flex;
@@ -126,6 +133,9 @@
         position: absolute;
         left: 400px;
         top: 0;
+    }
+    #printarea p {
+        visibility: visible;
     }
     #printarea p.small {
         top: 40px;

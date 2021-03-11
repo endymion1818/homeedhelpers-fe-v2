@@ -59,6 +59,11 @@ const Index = () => {
                   display: block;
               }
           }
+          @media print {
+            .container {
+              visibility: hidden;
+            }
+          }
         `}
         </style>
       </Layout>

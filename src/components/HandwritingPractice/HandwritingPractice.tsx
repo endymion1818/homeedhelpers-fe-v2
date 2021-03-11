@@ -99,7 +99,10 @@ const HandwritingPractice = () => {
                 <p>Student name: ______________________</p>
                 <p>Date: ___________</p>
             </section>
-            <p className={classes} contentEditable="true">Edit me!</p>
+            <p className={classes} contentEditable="true">
+                Edit me!
+                {showLines && <img className={styles.editableAreaImage} src={`/images/handwriting-singleline-${scale}.png`} alt=""  width="100%" />}
+            </p>
         </div>
       </>
     )
