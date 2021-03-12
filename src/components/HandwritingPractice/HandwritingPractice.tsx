@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import styles from './stylesheet.module.scss'
 import clsx from 'clsx'
 
@@ -37,10 +37,19 @@ const alignmentStyles = [
     }
 ]
 
-const Select = ({ values, callback, selected }) => {
+export type Option = {
+    name: string,
+    value: string
+}
+export interface SelectProps {
+    values: Option[],
+    callback: (value) => void
+}
+
+const Select:FC<SelectProps> = ({ values, callback }) => {
     return (
       <select
-        defaultValue={selected}
+        defaultValue={values[0].value}
         onChange={({ target: { value } }) => callback(value)}
       >
         {values.map(value => (
@@ -52,14 +61,21 @@ const Select = ({ values, callback, selected }) => {
     );
   }
 
+
+export interface EditableParagraphProps {
+    lines: string,
+    callback: () => void
+}
+
 const HandwritingPractice = () => {
     const [font, setFont] = React.useState(fontStyles[0].name)
     const [scale, setScale] = React.useState(lineScales[0].name)
     const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
     const [showLines, setShowLines] = React.useState(true)
+    const [lines, setLines] = React.useState(['Edit me!'])
 
     const classes = clsx(
-        styles.editable,
+        styles.editableArea,
         styles[font],
         styles[scale],
         styles[textAlignment],
@@ -68,10 +84,11 @@ const HandwritingPractice = () => {
 
     return (
         <>
+        <textarea className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
         <div id={styles.font}>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="dot">Font: </label>
-                <Select values={fontStyles} callback={setFont} selected={fontStyles[0]} />
+                <Select values={fontStyles} callback={setFont} />
             </fieldset>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="lines">Show lines: </label>
@@ -84,11 +101,11 @@ const HandwritingPractice = () => {
             </fieldset>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="align">Align: </label>
-                <Select values={alignmentStyles} callback={setTextAlign} selected={alignmentStyles[0]} />
+                <Select values={alignmentStyles} callback={setTextAlign} />
             </fieldset>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="scale">Font Size: </label>
-                <Select values={lineScales} callback={setScale} selected={lineScales[0]} />
+                <Select values={lineScales} callback={setScale} />
             </fieldset>
             <fieldset className={styles.fieldset}>
                 <button onClick={() => window.print}>Print</button>
@@ -99,9 +116,15 @@ const HandwritingPractice = () => {
                 <p>Student name: ______________________</p>
                 <p>Date: ___________</p>
             </section>
-            <p className={classes} contentEditable="true">
-                Edit me!
-                {showLines && <img className={styles.editableAreaImage} src={`/images/handwriting-singleline-${scale}.png`} alt=""  width="100%" />}
+            <p className={classes}>
+                {lines.map(line => `${line} \n`)}
+                {showLines && (
+                    <div className={styles.imageBackground}>
+                        {lines.map(line => (
+                            <img key={line.split(' ').join('-')} className={styles.editableAreaImage} src={`/images/handwriting-singleline-${scale}.png`} alt="" width="100%" />
+                        ))}
+                    </div>
+                )}
             </p>
         </div>
       </>
