@@ -14,8 +14,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn jest && yarn typecheck",
-      "pre-push": "yarn jest & yarn typecheck && yarn format"
+      "pre-commit": "yarn jest && yarn typecheck && yarn format",
+      "pre-push": "yarn jest & yarn typecheck"
     }
   },
   "dependencies": {
