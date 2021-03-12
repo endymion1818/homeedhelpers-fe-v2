@@ -14,13 +14,13 @@ export default function Navigation() {
       <div className={"container " + (active ? "active" : "")}>
         <ul>
           <li>
-            <Link href="/" title="go home - home ed helpers">
-              <a className={router.pathname === "/" ? "active" : null}><Logo /></a>
+            <Link href="/">
+              <a className={router.pathname === "/" ? "active" : null} title="go home - home ed helpers"><Logo /></a>
             </Link>
           </li>
           <li>
             <Link href="/handwriting-practice-paper">
-              <a className={router.pathname === "/" ? "active" : null}>Handwriting practice</a>
+              <a className={router.pathname === "/handwriting-practice-paper" ? "active" : null}>Handwriting practice</a>
             </Link>
           </li>
           {/* <li>
