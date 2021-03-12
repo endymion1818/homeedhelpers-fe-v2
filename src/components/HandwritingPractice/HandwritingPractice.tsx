@@ -85,7 +85,7 @@ const HandwritingPractice = () => {
     return (
         <>
         <textarea className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
-        <div id={styles.font}>
+        <div className={styles.textArea}>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="dot">Font: </label>
                 <Select values={fontStyles} callback={setFont} />

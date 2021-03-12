@@ -36,6 +36,7 @@ const Layout:FC = ({ children }) => {
           }
           .container {
             padding: 0 1.5rem;
+            max-width: 34rem;
           }
           @media (min-width: 769px) {
             .root {

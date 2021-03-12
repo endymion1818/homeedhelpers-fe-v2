@@ -91,6 +91,9 @@ export default function Navigation() {
                 padding: 0;
               }
             }
+            @media print {
+              visibility: hidden;
+            }
           `}
         </style>
       </div>
