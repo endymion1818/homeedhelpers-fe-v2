@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import styles from './stylesheet.module.scss'
+// import styles from './stylesheet.module.scss'
 import clsx from 'clsx'
 
 const lineScales = [
