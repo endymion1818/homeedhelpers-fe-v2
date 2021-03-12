@@ -9,12 +9,13 @@
     "export": "next build && next export -o ./dist",
     "test": "jest",
     "typecheck": "yarn tsc --noEmit",
-    "clean": "rm -rf .next"
+    "clean": "rm -rf .next",
+    "format": "prettier --write \"{,!(.next)/**/}*.{js, jsx, ts, tsx}\""
   },
   "husky": {
     "hooks": {
       "pre-commit": "yarn jest && yarn typecheck",
-      "pre-push": "yarn jest & yarn typecheck"
+      "pre-push": "yarn jest & yarn typecheck && yarn format"
     }
   },
   "dependencies": {
