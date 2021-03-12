@@ -46,7 +46,7 @@ export interface SelectProps {
     callback: (value) => void
 }
 
-const Select:FC<SelectProps> = ({ values, callback }) => {
+const Select = ({ values, callback }) => {
     return (
       <select
         defaultValue={values[0].value}
@@ -59,12 +59,6 @@ const Select:FC<SelectProps> = ({ values, callback }) => {
         ))}
       </select>
     );
-  }
-
-
-export interface EditableParagraphProps {
-    lines: string,
-    callback: () => void
 }
 
 const HandwritingPractice = () => {
