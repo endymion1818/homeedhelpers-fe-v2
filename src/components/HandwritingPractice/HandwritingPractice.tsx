@@ -78,7 +78,7 @@ const HandwritingPractice = () => {
 
     return (
         <>
-        <textarea className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
+        <textarea data-cy="textarea" className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
         <div className={styles.textArea}>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="dot">Font: </label>
@@ -110,7 +110,7 @@ const HandwritingPractice = () => {
                 <p>Student name: ______________________</p>
                 <p>Date: ___________</p>
             </section>
-            <p className={classes}>
+            <p className={classes} data-cy='printarea'>
                 {lines.map(line => `${line} \n`)}
                 {showLines && (
                     <div className={styles.imageBackground}>

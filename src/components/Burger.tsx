@@ -4,7 +4,7 @@ type Props = {
 };
 export default function Burger({ active, onClick }: Props) {
   return (
-    <div className={"container " + (active ? "active" : "")} onClick={onClick}>
+    <div className={"container " + (active ? "active" : "")} onClick={onClick}  data-cy="menu-btn">
       <div className={"meat meat-1"} />
       <div className={"meat meat-2"} />
       <div className={"meat meat-3"} />
