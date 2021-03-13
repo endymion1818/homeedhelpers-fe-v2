@@ -1,6 +1,8 @@
 import React, { FC, useEffect } from 'react'
-import styles from './stylesheet.module.scss'
 import clsx from 'clsx'
+import { ErrorBoundary } from '@sentry/react'
+
+import styles from './stylesheet.module.scss'
 
 const lineScales = [
     {
@@ -46,7 +48,7 @@ export interface SelectProps {
     callback: (value) => void
 }
 
-const Select = ({ values, callback }) => {
+const Select:FC<SelectProps> = ({ values, callback }) => {
     return (
       <select
         defaultValue={values[0].value}
@@ -61,7 +63,7 @@ const Select = ({ values, callback }) => {
     );
 }
 
-const HandwritingPractice = () => {
+const HandwritingPractice:FC = () => {
     const [font, setFont] = React.useState(fontStyles[0].name)
     const [scale, setScale] = React.useState(lineScales[0].name)
     const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
@@ -77,7 +79,7 @@ const HandwritingPractice = () => {
     )
 
     return (
-        <>
+        <ErrorBoundary>
         <textarea data-cy="textarea" className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
         <div className={styles.textArea}>
             <fieldset className={styles.fieldset}>
@@ -121,7 +123,7 @@ const HandwritingPractice = () => {
                 )}
             </p>
         </div>
-      </>
+      </ErrorBoundary>
     )
 }
 
