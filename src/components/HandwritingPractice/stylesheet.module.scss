@@ -40,9 +40,39 @@
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 200px;
+
+    @media print {
+        visibility: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        float: left;
+        background: white;
+    }
 }
 .printarea__header {
     display: none;
+
+    @media print {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        width: 100%;
+
+        &.editable:first-child {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .editable:last-child {
+            position: absolute;
+            left: 400px;
+            top: 0;
+        }
+    }
 }
 .printarea__header p {
     font-size: 18px;
@@ -98,38 +128,4 @@
     top: 0;
     left: 0;
     width: 100%;
-}
-@media print {
-    // TODO: only image is visible in print view
-    .printarea,
-    .printarea * {
-        visibility: visible;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 2;
-        float: left;
-        background: white;
-    }
-    .printarea__header {
-        display: flex;
-        flex-direction: row;
-        position: relative;
-        width: 100%;
-    }
-    .printarea__header .editable:first-child {
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-    .printarea__header .editable:last-child {
-        position: absolute;
-        left: 400px;
-        top: 0;
-    }
-    .printarea p.small {
-        top: 40px;
-    }
 }

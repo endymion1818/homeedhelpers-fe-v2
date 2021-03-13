@@ -103,9 +103,9 @@ const HandwritingPractice:FC = () => {
                 <label htmlFor="scale">Font Size: </label>
                 <Select values={lineScales} callback={setScale} />
             </fieldset>
-            <fieldset className={styles.fieldset}>
+            <div className={styles.fieldset}>
                 <button onClick={() => window.print}>Print</button>
-            </fieldset>
+            </div>
         </div>
         <div id={styles.printarea}>
             <section id={styles.printarea__header}>
@@ -115,11 +115,11 @@ const HandwritingPractice:FC = () => {
             <p className={classes} data-cy='printarea'>
                 {lines.map(line => `${line} \n`)}
                 {showLines && (
-                    <div className={styles.imageBackground}>
+                    <span className={styles.imageBackground}>
                         {lines.map(line => (
                             <img key={line.split(' ').join('-')} className={styles.editableAreaImage} src={`/images/handwriting-singleline-${scale}.png`} alt="" width="100%" />
                         ))}
-                    </div>
+                    </span>
                 )}
             </p>
         </div>
