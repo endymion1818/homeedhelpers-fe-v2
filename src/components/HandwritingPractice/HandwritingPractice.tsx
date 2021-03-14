@@ -4,7 +4,9 @@ import { ErrorBoundary } from '@sentry/react'
 
 import styles from './stylesheet.module.scss'
 
-const lineScales = [
+const lineScales = {
+    title: 'Line scales',
+    items: [
     {
         name: 'large',
         value: 'large'
@@ -13,8 +15,10 @@ const lineScales = [
         name: 'small',
         value: 'small'
     }
-]
-const fontStyles = [
+]}
+const fontStyles = {
+    title: 'Font styles',
+    items: [
     {
         name: 'primary',
         value: 'primary'
@@ -23,8 +27,10 @@ const fontStyles = [
         name: 'cursive',
         value: 'cursive'
     }
-]
-const alignmentStyles = [
+]}
+const alignmentStyles = {
+    title: 'Alignment styles',
+    items: [
     {
         name: 'left',
         value: 'left'
@@ -37,36 +43,45 @@ const alignmentStyles = [
         name: 'right',
         value: 'right'
     }
-]
+]}
 
 export type Option = {
     name: string,
     value: string
 }
 export interface SelectProps {
-    values: Option[],
+    options: {
+        title: string,
+        items: Option[]
+    },
     callback: (value) => void
 }
 
-const Select:FC<SelectProps> = ({ values, callback }) => {
+const Select = ({ options, callback }:SelectProps) => {
+    const { title, items } = options
+    const name = title.split(' ').join('-').toLowerCase()
     return (
-      <select
-        defaultValue={values[0].value}
-        onChange={({ target: { value } }) => callback(value)}
-      >
-        {values.map(value => (
-          <option key={value.value} value={value.value}>
-            {value.name}
-          </option>
-        ))}
-      </select>
+        <>
+            <label htmlFor={name}>Title: </label>
+            <select
+                id={name}
+                defaultValue={items[0].value}
+                onChange={({ target: { value } }) => callback(value)}
+            >
+                {items.map(value => (
+                <option key={value.value} value={value.value}>
+                    {value.name}
+                </option>
+                ))}
+            </select>
+            </>
     );
 }
 
-const HandwritingPractice:FC = () => {
-    const [font, setFont] = React.useState(fontStyles[0].name)
-    const [scale, setScale] = React.useState(lineScales[0].name)
-    const [textAlignment, setTextAlign] = React.useState(alignmentStyles[0].name)
+const HandwritingPractice = () => {
+    const [font, setFont] = React.useState(fontStyles.items[0].name)
+    const [scale, setScale] = React.useState(lineScales.items[0].name)
+    const [textAlignment, setTextAlign] = React.useState(alignmentStyles.items[0].name)
     const [showLines, setShowLines] = React.useState(true)
     const [lines, setLines] = React.useState(['Edit me!'])
 
@@ -80,11 +95,11 @@ const HandwritingPractice:FC = () => {
 
     return (
         <ErrorBoundary>
-        <textarea data-cy="textarea" className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
+        <label htmlFor="textarea" className={styles.sronly}>Font Size: </label>
+        <textarea data-cy="textarea" id="textarea" className={styles.textarea} defaultValue={lines[0]} onKeyUp={e => setLines(e.currentTarget.value.split("\n").map(l => l.trim()))} />
         <div className={styles.textArea}>
             <fieldset className={styles.fieldset}>
-                <label htmlFor="dot">Font: </label>
-                <Select values={fontStyles} callback={setFont} />
+                <Select options={fontStyles} callback={setFont} />
             </fieldset>
             <fieldset className={styles.fieldset}>
                 <label htmlFor="lines">Show lines: </label>
@@ -96,12 +111,10 @@ const HandwritingPractice:FC = () => {
                 />
             </fieldset>
             <fieldset className={styles.fieldset}>
-                <label htmlFor="align">Align: </label>
-                <Select values={alignmentStyles} callback={setTextAlign} />
+                <Select options={alignmentStyles} callback={setTextAlign} />
             </fieldset>
             <fieldset className={styles.fieldset}>
-                <label htmlFor="scale">Font Size: </label>
-                <Select values={lineScales} callback={setScale} />
+                <Select options={lineScales} callback={setScale} />
             </fieldset>
             <div className={styles.fieldset}>
                 <button onClick={() => window.print}>Print</button>
