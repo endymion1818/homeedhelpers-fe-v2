@@ -54,7 +54,7 @@ export interface SelectProps {
         title: string,
         items: Option[]
     },
-    callback: (value) => void
+    callback: (value:string) => void
 }
 
 const Select = ({ options, callback }:SelectProps) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 
 import styles from "../../public/styles/content.module.css";
 import Author from "../components/Author";
@@ -22,7 +22,7 @@ type Props = {
   tags: string[];
   author: string;
 };
-const  Index= ({
+const  Index = ({
   title,
   date,
   slug,
@@ -32,7 +32,8 @@ const  Index= ({
 }: Props) => {
   const keywords = tags.map((it) => getTag(it).name);
   const authorName = getAuthor(author).name;
-  return ({ children: content }) => {
+  // TODO: @tsfixme
+  return ({ children }: any) => {
     return (
       <Layout>
         <BasicMeta
@@ -72,7 +73,7 @@ const  Index= ({
                 </div>
               </div>
             </header>
-            <div className={styles.content}>{content}</div>
+            <div className={styles.content}>{children}</div>
             <ul className={"tag-list"}>
               {tags.map((it, i) => (
                 <li key={i}>

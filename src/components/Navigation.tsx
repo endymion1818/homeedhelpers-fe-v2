@@ -15,17 +15,17 @@ export default function Navigation() {
         <ul>
           <li>
             <Link href="/">
-              <a data-cy="nav-item" className={router.pathname === "/" ? "active" : null} title="go home - home ed helpers"><Logo /></a>
+              <a data-cy="nav-item" className={router.pathname === "/" ? "active" : undefined} title="go home - home ed helpers"><Logo /></a>
             </Link>
           </li>
           <li>
             <Link href="/handwriting-practice-paper">
-              <a data-cy="nav-item" className={router.pathname === "/handwriting-practice-paper" ? "active" : null}>Handwriting practice</a>
+              <a data-cy="nav-item" className={router.pathname === "/handwriting-practice-paper" ? "active" : undefined}>Handwriting practice</a>
             </Link>
           </li>
           <li>
             <Link href="/about">
-              <a data-cy="nav-item" className={router.pathname === "/about" ? "active" : null}>About</a>
+              <a data-cy="nav-item" className={router.pathname === "/about" ? "active" : undefined}>About</a>
             </Link>
           </li>
           {/* <li>
