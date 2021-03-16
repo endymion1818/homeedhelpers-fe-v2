@@ -1,8 +1,9 @@
+import Link from "next/link";
+
 import Layout from "../components/Layout";
 import BasicMeta from "../components/meta/BasicMeta";
 import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
-import { SocialList } from "../components/SocialList";
 
 export default function Index() {
   return (
@@ -12,22 +13,22 @@ export default function Index() {
       <TwitterCardMeta url={"/"} />
       <div className="container">
         <div>
-          <h1>
-            Hi, We're Next.js & Netlify<span className="fancy">.</span>
+          <h1 className="fancy">
+            Home Ed Helpers
           </h1>
-          <span className="handle">@nextjs-netlify-blog</span>
-          <h2>A blog template with Next.js and Netlify.</h2>
-          <SocialList />
+          <p className="handle">Tools to help the students of home educating parents (and others too! We're not biased!) progress in their learning!</p>
+          <p>Some of these tools are inspired by ones we've used as home ed parents ourselves. We thought we'd collect them all together in one place for your convenience.</p>
+          <h2>Tools:</h2>
+          <ul>
+            <li>
+              <Link href="/handwriting-practice-paper">
+                <a>Handwriting practice paper &mdash; Make full-page custom handwriting worksheets in seconds!</a>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
       <style jsx>{`
-        .container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex: 1 1 auto;
-          padding: 0 1.5rem;
-        }
         h1 {
           font-size: 2.5rem;
           margin: 0;

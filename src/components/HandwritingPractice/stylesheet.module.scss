@@ -1,0 +1,140 @@
+
+@font-face {
+    font-family: 'KG Primary Dots';
+    src: url('../../assets/KGPrimaryDots.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Learning Curve Dashed';
+    src: url('../../assets/LearningCurveDashed.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.sronly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+.fieldset {
+    border: 1px solid transparent;
+}
+.textArea {
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+
+    label {
+        display: inline-block;
+        margin: 0.2rem;
+    }
+
+    @media (min-width: 769px) {
+        flex-direction: row;
+    }
+}
+
+.printarea {
+    width: 100%;
+    max-width: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 200px;
+
+    @media print {
+        visibility: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        float: left;
+        background: white;
+    }
+}
+.printarea__header {
+    display: none;
+
+    @media print {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        width: 100%;
+
+        &.editable:first-child {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .editable:last-child {
+            position: absolute;
+            left: 400px;
+            top: 0;
+        }
+    }
+}
+.printarea__header p {
+    font-size: 18px;
+}
+.editableArea {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    white-space: pre-line;
+
+    &.primary {
+        font-family: 'KG Primary Dots';
+    }
+    &.cursive {
+        font-family: 'Learning Curve Dashed';
+    }
+    &.large {
+        font-size: 152px;
+        line-height: 1.3;
+
+        img {
+            height: 152px;
+        }
+    }
+    &.small {
+        font-size: 40px;
+        line-height: 1.2;
+
+        img {
+            height: 40px;
+        }
+    }
+    &.left {
+        text-align: left;
+    }
+    &.right {
+        text-align: right;
+    }
+    &.center {
+        text-align: center;
+    }
+
+}
+.textarea {
+    width: 65vw;
+    resize: vertical;
+    min-height: 60px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.imageBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}

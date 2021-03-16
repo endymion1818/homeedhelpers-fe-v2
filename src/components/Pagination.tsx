@@ -13,17 +13,23 @@ export default function Pagination({ current, pages, link }: Props) {
   const pagination = generatePagination(current, pages);
   return (
     <ul>
-      {pagination.map((it, i) => (
+      {pagination && pagination.map((it, i) => {
+        const { page } = it
+        return (
         <li key={i}>
           {it.excerpt ? (
             "..."
           ) : (
-            <Link href={link.href(it.page)} as={link.as(it.page)}>
-              <a className={it.page === current ? "active" : null}>{it.page}</a>
-            </Link>
+            <>
+            {page && (
+              <Link href={link.href(page)} as={link.as(page)}>
+                <a className={it.page === current ? "active" : undefined}>{it.page}</a>
+              </Link>
+            )}
+            </>
           )}
         </li>
-      ))}
+      )})}
       <style jsx>{`
         ul {
           list-style: none;

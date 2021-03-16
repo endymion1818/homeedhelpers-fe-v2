@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Burger from "./Burger";
 import { useState } from "react";
 
+import Logo from './logo.svg'
+
 export default function Navigation() {
   const router = useRouter();
   const [active, setActive] = useState(false);
@@ -13,10 +15,20 @@ export default function Navigation() {
         <ul>
           <li>
             <Link href="/">
-              <a className={router.pathname === "/" ? "active" : null}>about</a>
+              <a data-cy="nav-item" className={router.pathname === "/" ? "active" : undefined} title="go home - home ed helpers"><Logo /></a>
             </Link>
           </li>
           <li>
+            <Link href="/handwriting-practice-paper">
+              <a data-cy="nav-item" className={router.pathname === "/handwriting-practice-paper" ? "active" : undefined}>Handwriting practice</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/about">
+              <a data-cy="nav-item" className={router.pathname === "/about" ? "active" : undefined}>About</a>
+            </Link>
+          </li>
+          {/* <li>
             <Link href="/posts">
               <a
                 className={
@@ -26,7 +38,7 @@ export default function Navigation() {
                 blog
               </a>
             </Link>
-          </li>
+          </li> */}
         </ul>
         <style jsx>
           {`
@@ -83,6 +95,9 @@ export default function Navigation() {
                 font-size: 1rem;
                 padding: 0;
               }
+            }
+            @media print {
+              visibility: hidden;
             }
           `}
         </style>

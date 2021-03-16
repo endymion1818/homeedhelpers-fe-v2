@@ -15,7 +15,9 @@ const Layout:FC = ({ children }) => {
       <nav>
         <Navigation />
       </nav>
-      <main>{children}</main>
+      <main className="container">
+        {children}
+      </main>
       <style jsx>
         {`
           .root {
@@ -28,13 +30,19 @@ const Layout:FC = ({ children }) => {
             display: flex;
             min-height: 100%;
           }
+          footer {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          .container {
+            padding: 0 1.5rem;
+            max-width: 34rem;
+          }
           @media (min-width: 769px) {
             .root {
               display: flex;
               flex: 1 0 auto;
-            }
-            main {
-              flex: 1 0 auto;
+              grid-gap: 20px;
             }
           }
         `}
